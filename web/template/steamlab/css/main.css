@@ -1,0 +1,122 @@
+/*
+Template: streamlab - Video Streaming WordPress Theme
+Author: Gentechtree
+Version: 1.0
+Design and Developed by: Gentechtree.com
+
+*/
+.gen-video-holder .wpulike { display: none; }
+.movie-grid .gen-movie-add .dropdown-menu a { position: relative; }
+.movie-grid .gen-movie-add .dropdown-menu a.toggle-playlist:before { content: "\2610"; padding-right: 15px; font-size: 18px; width: 18px; height: 18px; background-repeat: no-repeat; background-position: left; }
+.movie-grid .gen-movie-add .dropdown-menu a.toggle-playlist.added:before { content: '\2611'; padding-right: 10px; font-size: 18px; width: 18px; height: 18px; background-repeat: no-repeat; background-position: left; }
+.movie-grid .gen-movie-add .dropdown-menu a:last-child:before { content: '\002B'; padding-right: 10px; font-size: 18px; width: 18px; height: 18px; }
+.mCSB_inside>.mCSB_container { margin-right: 15px; }
+.wpulike.wpulike-default { display: none; }
+.toggle-playlist.added { color: var(--primary-color) !important; }
+.wpulike.wpulike-heart a i { color: var(--white-color); }
+.wpulike.wpulike-heart a.liked i { color: var(--primary-color); }
+.gen-single-movie-info .gen-excerpt, .gen-single-video-info .gen-excerpt { display: inline-block; width: 100%; font-size: 18px; }
+.gen-single-tv-show-info .gen-excerpt { display: inline-block; width: 100%; font-size: 18px; margin-bottom: 30px; }
+.gen-episode-contain .gen-episode-info h3 { font-size: 20px; line-height: 28px; font-weight: 400; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.gen-movie-contain-style-2 .gen-movie-meta-holder ul.gen-meta-after-title li:first-child:before { display: none; }
+.gen-banner-movies .gen-movie-contain .gen-movie-meta-holder ul li a.gen-imgb-link { background: none; }
+.gen-movie-contain-style-2 .gen-movie-meta-holder ul.gen-meta-after-title li a.gen-imgb-link { background: none; }
+.gen-movie-contain-style-3 .gen-movie-meta-holder ul li a.gen-imgb-link { background: none; }
+.gen-gtranslate { display: none; }
+.gen-banner-movies.banner-style-2 .pmpro_content_message { display: none; }
+.gen-banner-movies.banner-style-3 .pmpro_content_message { display: none; }
+.gen-banner-movies .pmpro_content_message { display: none; }
+.pmpro-level-required .gen-excerpt p { display: none; }
+.pmpro-level-required .gen-video-holder p { display: none; }
+.pms-login-error{ position:relative !important; }
+
+/*================================================
+Blog Sidebar
+================================================*/
+.widget.gen-media-siderbar .gen-genre { margin-top: 10px; }
+.widget.gen-media-siderbar .gen-genre li { padding: 0; margin: 0 0 8px; }
+.widget.gen-media-siderbar .gen-genre > li a{ padding: 0; }
+.widget.gen-media-siderbar .gen-genre > li a:before {  content: '\f07c'; font-weight: 400; font-size: 14px;     font-family: "Font Awesome 5 Free"; padding-right: 10px; }
+.widget.gen-media-siderbar .gen-genre > li:last-child { margin-bottom: 0; }
+
+
+/**/
+.widget.gen-media-siderbar .gen-tag { margin-top: 10px; }
+.widget.gen-media-siderbar .gen-tag li { padding: 4px 8px; margin: 0 4px 8px 0; display: inline-block;  font-size: 15px;   color: var(--white-color);
+    background: var(--primary-color);
+ }
+ .widget.gen-media-siderbar .gen-tag li:hover { color: var(--white-color);
+    background: var(--primarydark-color);
+ }
+.widget.gen-media-siderbar .gen-tag > li a { padding: 0; color: var(--white-color); }
+.widget.gen-media-siderbar .gen-tag > li a:hover { color: var(--white-color); }
+
+/**/
+.widget.gen-media-siderbar .masvideos-search { margin-top: 10px; position: relative; }
+.widget.gen-media-siderbar .masvideos-search input {  color: var(--white-color);
+    background: var(--dark-color); border-color: var(--dark-color); }
+
+.widget.gen-media-siderbar .masvideos-search input:focus, .widget.gen-media-siderbar .masvideos-search input:hover  {  border-color: var(--primary-color); }
+
+.widget.gen-media-siderbar .masvideos-search button { border: none; padding: 0;     font-size: 0; position: absolute; text-align: center; color: var(--white-color) !important; line-height: 54px; height: 54px; width: 54px; top: 0; right: 0; transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -ms-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; }
+.widget.gen-media-siderbar .masvideos-search button:before { content: "\f002"; font-family: "Font Awesome 5 Free"; font-weight: 600;     font-size: 16px;  }
+.widget.gen-media-siderbar .masvideos-search button:hover { color: var(--white-color) !important; background: var(--primarydark-color); outline: none; }
+
+/**/
+.widget.gen-media-siderbar ul .masvideos-layered-nav-rating:first-child { margin-top: 10px; }
+.widget.gen-media-siderbar ul .masvideos-layered-nav-rating { padding: 0; margin: 0;  color: var(--white-color);
+ }
+ .widget.gen-media-siderbar ul .masvideos-layered-nav-rating a { display: flex;     padding: 0;
+    justify-content: space-between; }
+.widget.gen-media-siderbar ul .masvideos-layered-nav-rating  .star-rating .star {
+    color: var(--primary-color);
+
+    font-size: 16px;
+    height: 16px;
+    line-height: 2;}
+
+
+.gen-banner-movies.banner-style-2 .pmpro_content_message
+{
+    display:none;
+}
+.gen-banner-movies.banner-style-3 .pmpro_content_message
+{
+    display:none;
+}
+.gen-banner-movies .pmpro_content_message
+{
+    display:none;
+}
+.pmpro-level-required .gen-excerpt p {display:none;}
+.pmpro-level-required .gen-video-holder p {display:none;}
+.pms-login-error{ position:relative !important; }
+/* Show Account Button In Mobile Devide */
+@media(max-width:479px) {
+    .gen-menu-search-block, .gen-sidebar, .gen-toggle-btn
+    {
+        /*display: none !important;*/
+    }
+    header#gen-header.gen-header-style-1 .gen-header-info-box 
+    { 
+        /*display: block !important; */
+    }
+    
+}
+.admin-bar header#gen-header.gen-header-style-1
+{
+    top: 0;
+}
+.admin-bar header#gen-header.gen-header-style-1.gen-has-sticky.gen-header-sticky
+{
+    top: 32px;
+}
+
+.search-form select{
+    margin-top: 8px;
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+}
+.widget select, .widget select.form-control {
+    margin-top: 8px;
+}

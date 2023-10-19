@@ -1,0 +1,24 @@
+/**************************************/
+header#gen-header .navbar .mega-menu-wrap { display: inline-block; width: 100%; }
+header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu li.mega-menu-item > a { font-family: var(--title-fonts); }
+header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu li.mega-menu-megamenu ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link { font-family: var(--title-fonts); color: var(--white-color); font-weight: 600; }
+header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link:hover { font-family: var(--title-fonts); color: var(--white-color); font-weight: 600; }
+header#gen-header.gen-header-style-1.gt-mege-menu .gen-header-info-box { margin: 0; }
+header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item.mega-current_page_item a.mega-menu-link, header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item.mega-current-menu-parent>a.mega-menu-link { color: var(--primary-color); }
+header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item.mega-current-menu-item > a.mega-menu-link { color: var(--primary-color); }
+@media(max-width:1299px) {
+	header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-item > a.mega-menu-link { padding: 0px 20px 0px 0; }
+}
+@media(max-width:1023px) {
+	header#gen-header .navbar .mega-menu-wrap { width: inherit; position: absolute; right: 0; }
+	header#gen-header.gen-header-style-1.gt-mege-menu .gen-header-info-box { margin: 0 70px 0 0; }
+	header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu li.mega-menu-item > a { border-bottom: 1px solid var(--grey-color); }
+	header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-flyout ul.mega-sub-menu { box-shadow: none; }
+	header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-flyout ul.mega-sub-menu li { background: var(--grey-color); }
+	header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-item > a.mega-menu-link { padding: 10px 15px; line-height: inherit; height: inherit; }
+	header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link { padding: 10px 30px; line-height: 30px; }
+	header#gen-header .navbar .mega-menu-wrap #mega-menu-primary.mega-menu li.mega-menu-megamenu > ul.mega-sub-menu > li.mega-menu-row .mega-menu-column > ul.mega-sub-menu > li.mega-menu-item { padding: 15px 15px 0px 15px; }
+	#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu ul.mega-sub-menu li.mega-4-columns > ul.mega-sub-menu > li.mega-menu-item ,#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu ul.mega-sub-menu li.mega-3-columns > ul.mega-sub-menu > li.mega-menu-item,#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu ul.mega-sub-menu li.mega-2-columns > ul.mega-sub-menu > li.mega-menu-item,#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu ul.mega-sub-menu li.mega-5-columns > ul.mega-sub-menu > li.mega-menu-item,#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu ul.mega-sub-menu li.mega-6-columns > ul.mega-sub-menu > li.mega-menu-item{	float: none; width: 100%; }
+}
+
+
