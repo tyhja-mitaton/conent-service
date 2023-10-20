@@ -3,7 +3,7 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 
-/** @var app\models\LoginForm $model */
+/** @var app\models\user\LoginForm $model */
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
@@ -46,8 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php ActiveForm::end(); ?>
 
             <div style="color:#999;">
-                You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-                To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+                Don't have account yet? <?=Html::a('Sign up', ['signup'])?>
             </div>
 
         </div>
