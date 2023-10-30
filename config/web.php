@@ -2,7 +2,7 @@
 require 'common.php';
 
 $config = [
-    //'modules' => null,
+    'modules' => null,
     'components' => [
         'errorHandler' => [
             'class' => 'app\components\ErrorHandlerWeb',
@@ -14,7 +14,7 @@ $config = [
         'authClientCollection' => null,
     ],
     //'defaultRoute' => '/user/default/route',
-    //'container' => null,
+    'container' => null,
 ];
 
 if (env('YII_DEBUG')) {

@@ -1,17 +1,18 @@
 <?php
-
 /** @var yii\web\View $this */
-/* @var \app\models\search\Album $searchModel */
-/* @var yii\data\ActiveDataProvider $dataProvider */
+/* @var yii\data\ArrayDataProvider $dataProvider */
+/* @var string $albumName */
 
-$this->title = 'My Yii Application';
+$this->title = $albumName;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="container">
     <?= \yii\widgets\ListView::widget([
         'dataProvider' => $dataProvider,
         'showOnEmpty' => true,
         'itemView' => function ($model, $key, $index, $widget) {
-            return $this->render('/album/_listItem', ['model' => $model]);
+            return $this->render('_videoItem', ['model' => $model]);
         },
     ]) ?>
 </div>

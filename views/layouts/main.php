@@ -8,8 +8,6 @@ use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
-use yii\bootstrap5\Nav;
-use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
 \app\assets\SteamlabAsset::register($this);
@@ -27,7 +25,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <head>
     <?php $this->head() ?>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 full-screen-preview">
 <?php $this->beginBody() ?>
 
 <div id="page" class="site">
@@ -60,7 +58,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             </div><!-- #content -->
 
 
-            <footer id="gen-footer" class="mt-auto py-3 bg-light">
+            <footer id="gen-footer" class="mt-auto py-3">
                 <div class="gen-footer-style-1">
                     <div class="gen-footer-top">
                         <div class="container">

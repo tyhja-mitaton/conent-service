@@ -86,3 +86,47 @@ a.desc:after {
 .form-group {
     margin-bottom: 1rem;
 }
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #545454;
+}
+body {
+    background-color: black;
+}
+.fa-play::before {
+    content: "\f04b";
+}
+.pagination .prev.disabled span, .pagination .next.disabled span {
+    display: none;
+}
+.gen-pagination li.page-numbers.current .page-link {
+    color: var(--white-color);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    z-index: 1;
+    transition: all 0.5s ease-out 0s;
+}
+.gen-pagination li.page-numbers .page-link, .gen-pagination li.next .page-link, .gen-pagination li.prev .page-link {
+    position: relative;
+    display: block;
+    padding: 0 15px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 46px;
+    margin: 0 5px;
+    color: var(--white-color);
+    background-color: var(--black-color);
+    border: 2px solid var(--black-color);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.gen-pagination li.next .page-link, .gen-pagination li.prev .page-link {
+    width: auto;
+}
+.gen-breadcrumb::before {
+    display:none;
+}
