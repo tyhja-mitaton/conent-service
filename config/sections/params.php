@@ -7,4 +7,5 @@ return [
     'clientId' => '',
     'clientSecret' => '',
     'token' => '',
+    'isPhoneCodesDisabled' => true,
 ];

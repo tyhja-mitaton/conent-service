@@ -49,7 +49,19 @@ $this->title = Yii::t('app', 'Регистрация');
                     ])->textInput(['class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('email'), 'type' => 'email']) ?>
                 </div>
                 <div class="input-group mb-3">
-                    <?php echo $form->field($model, 'username')->textInput()?>
+                    <?php echo $form->field($model, 'username', [
+                        'options' => [
+                            'class' => 'input-group',
+                        ],
+                        'template' => '
+                            <div class="wrap-input100 validate-input">
+                                {input}
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="zmdi zmdi-email" aria-hidden="true"></i>
+                                </span>
+                            </div> ',
+                    ])->textInput(['class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('username')])?>
                 </div>
                 <div class="input-group mb-4">
                     <?php echo $form->field($model, 'password', [

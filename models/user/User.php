@@ -31,6 +31,9 @@ use app\models\user\enums\UserRole;
  * @property bool $is_deleted
  * @property integer $status_moderation
  * @property string $role
+ * @property integer $phone
+ * @property string $confirm_code
+ * @property integer $registration_type
  *
  */
 
@@ -87,10 +90,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email'], 'unique'],
+            [['username', 'email', 'phone'], 'unique'],
             ['status', 'default', 'value' => 1],
             //['status', 'in', 'range' => array_keys(UserStatus::array())],
-            [['username'], 'filter', 'filter' => '\yii\helpers\Html::encode']
+            [['username'], 'filter', 'filter' => '\yii\helpers\Html::encode'],
         ];
     }
 

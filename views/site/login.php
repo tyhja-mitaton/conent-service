@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php ActiveForm::end(); ?>
 
             <div style="color:#999;">
-                Don't have account yet? <?=Html::a('Sign up', ['signup'])?>
+                Don't have account yet? Sign up with <?=Html::a('email', ['signup'])?> or <?=Html::a('phone', ['signup-phone'])?>
             </div>
 
         </div>

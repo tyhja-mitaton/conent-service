@@ -110,4 +110,33 @@ trait Auth
     {
         $this->token_hash = Yii::$app->getSecurity()->generatePasswordHash($token);
     }
+
+    public function createSmsCode()
+    {
+        if (Yii::$app->params['isPhoneCodesDisabled']) {
+            $this->confirm_code = '0000';
+        } else {
+            $this->confirm_code = str_pad((string)random_int(1111, 9999), 4, '0', STR_PAD_LEFT);
+        }
+        $this->updateAttributes(['confirm_code']);
+
+        if (!Yii::$app->params['isPhoneCodesDisabled']) {
+            $messages = [
+                'code' => Yii::t('user', 'Your verification code: {code}', ['code' => $this->confirm_code]),
+            ];
+
+            $message = $messages['code'];
+            Yii::$app->twilio->sms(
+                '+' . $this->phone,
+                $message,
+                ['from' => Yii::$app->twilio->phoneNumber]
+            );
+        }
+        return true;
+    }
+
+    public static function preparePhone($phone)
+    {
+        return preg_replace("/[^0-9]/", "", $phone);
+    }
 }
