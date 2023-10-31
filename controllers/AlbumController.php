@@ -45,14 +45,14 @@ class AlbumController extends \yii\web\Controller
     public function actionVideos($id)
     {
         $model = $this->findModel($id);
-        $response = Album::requestVimeo("/albums/{$model->showcase_id}/videos");
+        $dataProvider = new ArrayDataProvider();
+        $params['page'] = $dataProvider->pagination->page + 1;
+        $params['per_page'] = $dataProvider->pagination->pageSize;
+        $response = Album::requestVimeo("/albums/{$model->showcase_id}/videos", $params);
 
         if($response['status'] == Album::STATUS_OK) {
             $body = $response['body'];
-            $dataProvider = new ArrayDataProvider([
-                'allModels' => $body['data'],
-            ]);
-            //print_r($dataProvider->models);exit;
+            $dataProvider->setModels($body['data']);
 
             return $this->render('videos', [
                 'dataProvider' => $dataProvider,

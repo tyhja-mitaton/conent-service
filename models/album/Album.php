@@ -87,13 +87,13 @@ class Album extends \yii\db\ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public static function requestVimeo($url, $method = 'GET'): array
+    public static function requestVimeo($url, $params = array(), $method = 'GET'): array
     {
         $clientId = Yii::$app->params['clientId'];
         $clientSecret = Yii::$app->params['clientSecret'];
         $token = Yii::$app->params['token'];
         $client = new Vimeo($clientId, $clientSecret, $token);
 
-        return $client->request($url, array(), $method);
+        return $client->request($url, $params, $method);
     }
 }
