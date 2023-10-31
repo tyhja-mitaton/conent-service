@@ -38,6 +38,7 @@ if (!class_exists('ConfigGenerator')) {
                     'commandBus' => null,
                     'i18n' => null,
                     'telegram' => null,
+                    'twilio' => null,
                     'queue' => null
                 ],
                 'params' => null,

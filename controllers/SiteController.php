@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\search\Album;
+use app\models\user\LoginPhoneForm;
 use app\models\user\SignupForm;
+use app\models\user\SignupPhoneForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -122,6 +124,34 @@ class SiteController extends Controller
         }
 
         return $this->render('signup', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionSignupPhone()
+    {
+        $model = new SignupPhoneForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $user = $model->signup(Yii::$app->request->post()['SignupPhoneForm']);
+            if ($user) {
+                return $this->redirect('login-phone');
+            }
+        }
+
+        return $this->render('signup-phone', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionLoginPhone()
+    {
+        $model = new LoginPhoneForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->login();
+
+            return $this->goHome();
+        }
+        return $this->render('login-phone', [
             'model' => $model
         ]);
     }

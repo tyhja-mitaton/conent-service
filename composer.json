@@ -21,7 +21,8 @@
         "yiithings/yii2-dotenv": "^1.1",
         "yiisoft/yii2-redis": "~2.0.0",
         "yii2tech/ar-softdelete": "^1.0",
-        "vimeo/vimeo-api": "^3.0"
+        "vimeo/vimeo-api": "^3.0",
+        "2amigos/yii2-twilio-component": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
