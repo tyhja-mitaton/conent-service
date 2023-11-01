@@ -1,6 +1,7 @@
 <?php
 
 /* @var array $model */
+/* @var int $albumId */
 
 $matches = [];
 preg_match("/\d+$/", $model['uri'], $matches);
@@ -16,7 +17,7 @@ $previewLink = $model['pictures']['base_link'];
                     <?=''//$model['embed']['html']?>
                     <div class="gen-movie-add"></div>
                     <div class="gen-movie-action">
-                        <?=\yii\helpers\Html::a('<i class="fa fa-play"></i>', ['/album/video', 'id' => $videoId], ['class' => 'gen-button'])?>
+                        <?=\yii\helpers\Html::a('<i class="fa fa-play"></i>', ['/album/video', 'id' => $videoId, 'albumId' => $albumId], ['class' => 'gen-button'])?>
                     </div>
                 </div>
                 <div class="gen-info-contain">

@@ -1,9 +1,9 @@
 <?php
 /** @var yii\web\View $this */
 /* @var yii\data\ArrayDataProvider $dataProvider */
-/* @var string $albumName */
+/* @var \app\models\album\Album $album */
 
-$this->title = $albumName;
+$this->title = $album->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -11,8 +11,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= \yii\widgets\ListView::widget([
         'dataProvider' => $dataProvider,
         'showOnEmpty' => true,
-        'itemView' => function ($model, $key, $index, $widget) {
-            return $this->render('_videoItem', ['model' => $model]);
+        'itemView' => function ($model, $key, $index, $widget) use ($album) {
+            return $this->render('_videoItem', ['model' => $model, 'albumId' => $album->id]);
         },
     ]) ?>
 </div>

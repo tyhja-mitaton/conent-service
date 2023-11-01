@@ -2,6 +2,7 @@
 
 namespace app\models\album;
 
+use Vimeo\Exceptions\VimeoRequestException;
 use Yii;
 use Vimeo\Vimeo;
 
@@ -97,6 +98,10 @@ class Album extends \yii\db\ActiveRecord
         $token = Yii::$app->params['token'];
         $client = new Vimeo($clientId, $clientSecret, $token);
 
-        return $client->request($url, $params, $method);
+        try {
+            return $client->request($url, $params, $method);
+        } catch (VimeoRequestException $exception) {
+            throw $exception;
+        }
     }
 }
