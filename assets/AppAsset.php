@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/assign-role.js',
+        'js/assign-album-file.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

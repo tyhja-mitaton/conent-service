@@ -21,25 +21,13 @@ class AlbumController extends \yii\web\Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['create', 'update', 'videos'],
+                        'actions' => ['create', 'video', 'videos'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                 ],
             ],
         ];
-    }
-
-    public function actionCreate()
-    {
-        $model = new Album();
-        if($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['site/index']);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     public function actionVideos($id)

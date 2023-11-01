@@ -2,6 +2,7 @@
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 use yii\bootstrap5\Html;
+use app\models\user\enums\UserRole;
 ?>
 <div class="gen-background-overlay"></div>
 <div class="gen-sidebar">
@@ -29,8 +30,8 @@ use yii\bootstrap5\Html;
                         'options' => ['class' => 'navbar-nav'],
                         'items' => [
                             ['label' => 'Home', 'url' => ['/site/index']],
-                            ['label' => 'About', 'url' => ['/site/about']],
-                            ['label' => 'Contact', 'url' => ['/site/contact']],
+                            ['label' => 'Users', 'url' => ['/user/user/index'], 'visible' => Yii::$app->user->can(UserRole::Administrator->value)],
+                            ['label' => 'Showcases', 'url' => ['/admin/album/index'], 'visible' => Yii::$app->user->can(UserRole::Administrator->value)],
                             Yii::$app->user->isGuest
                                 ? ['label' => 'Login', 'url' => ['/site/login']]
                                 : '<li class="nav-item">'

@@ -13,6 +13,7 @@ class Album extends \app\models\album\Album
     {
         return [
             [['duration'], 'integer'],
+            ['for_registered_users', 'boolean'],
             [['name', 'showcase_id', 'description', 'author_name', 'author_url', 'cover_link'], 'string', 'max' => 255],
         ];
     }
@@ -42,6 +43,7 @@ class Album extends \app\models\album\Album
             'showcase_id' => $this->showcase_id,
             'duration' => $this->duration,
             'cover_link' => $this->cover_link,
+            'for_registered_users' => $this->for_registered_users,
         ]);
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description])

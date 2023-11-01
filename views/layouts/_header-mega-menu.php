@@ -2,6 +2,7 @@
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 use yii\bootstrap5\Html;
+use app\models\user\enums\UserRole;
 ?>
 <header id="gen-header" class="gen-header-style-1 gen-has-sticky gt-mege-menu">
     <div class="gen-bottom-header">
@@ -23,8 +24,8 @@ use yii\bootstrap5\Html;
                                 'linkOptions' => ['class' => 'mega-menu-link'],
                                 'options' => ['class' => 'mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-align-bottom-left mega-menu-flyout']
                                 ],
-                            ['label' => 'About', 'url' => ['/site/about'], 'linkOptions' => ['class' => 'mega-menu-link'],],
-                            ['label' => 'Contact', 'url' => ['/site/contact'], 'linkOptions' => ['class' => 'mega-menu-link'],],
+                            ['label' => 'Users', 'url' => ['/user/user/index'], 'linkOptions' => ['class' => 'mega-menu-link'], 'visible' => Yii::$app->user->can(UserRole::Administrator->value)],
+                            ['label' => 'Showcases', 'url' => ['/admin/album/index'], 'linkOptions' => ['class' => 'mega-menu-link'], 'visible' => Yii::$app->user->can(UserRole::Administrator->value)],
                             Yii::$app->user->isGuest
                                 ? ['label' => 'Login', 'url' => ['/site/login']]
                                 : '<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-home mega-align-bottom-left mega-menu-flyout">'

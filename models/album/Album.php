@@ -16,6 +16,7 @@ use Vimeo\Vimeo;
  * @property string|null $author_name
  * @property string|null $author_url
  * @property string|null $cover_link
+ * @property bool $for_registered_users
  */
 class Album extends \yii\db\ActiveRecord
 {
@@ -36,9 +37,10 @@ class Album extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['duration'], 'integer'],
+            [['duration', 'for_registered_users'], 'integer'],
             [['name', 'showcase_id', 'description', 'author_name', 'author_url', 'cover_link'], 'string', 'max' => 255],
             ['link', 'validateLink','skipOnEmpty' => false],
+            ['for_registered_users', 'default', 'value' => 0],
         ];
     }
 
@@ -63,6 +65,7 @@ class Album extends \yii\db\ActiveRecord
             'author_name' => 'Author Name',
             'author_url' => 'Author Url',
             'cover_link' => 'Cover Link',
+            'for_registered_users' => 'Ror registered users',
         ];
     }
 
