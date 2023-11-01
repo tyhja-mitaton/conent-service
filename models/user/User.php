@@ -103,13 +103,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
-            'username' => 'Логин',
+            'username' => 'Login',
             'email' => 'E-mail',
-            'status' => 'Статус',
-            'access_token' => 'API токен',
-            'created_at' => 'Дата регистрации',
-            'updated_at' => 'Изменено',
-            'logged_at' => 'Последне посещение',
+            'status' => 'Status',
+            'access_token' => 'API token',
+            'created_at' => 'Registration date',
+            'updated_at' => 'Updated at',
+            'logged_at' => 'Logged at',
         ];
     }
 

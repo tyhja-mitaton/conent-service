@@ -2,6 +2,7 @@
 
 namespace app\models\user;
 
+use Twilio\Exceptions\RestException;
 use yii\base\Exception;
 use yii\base\Model;
 use Yii;
@@ -14,7 +15,7 @@ class SignupForm extends Model
     /**
      * @var
      */
-    public $username;
+    public $phone;
     /**
      * @var
      */
@@ -41,23 +42,28 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'required'],
-            [
-                'username',
-                'unique',
-                'targetClass' => '\app\models\user\User',
-                'message' => 'Пользователь уже существует'
-            ],
-            [['username'], 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
+            [['phone', 'email'], 'filter', 'filter' => 'trim'],
+            [['phone', 'email'], 'required'],
             ['email', 'email'],
             [
                 'email',
                 'unique',
                 'targetClass' => '\app\models\user\User',
                 'message' => 'Электронная почта уже занята'
+            ],
+            [
+                'phone',
+                'match',
+                'pattern' => '#^[+]?[1-9][0-9-]{6,30}$#',
+                'message' => Yii::t('app', 'Incorrect phone number')
+            ],
+            ['phone', 'filter', 'filter' => [User::class, 'preparePhone']],
+            [
+                'phone',
+                'unique',
+                'skipOnEmpty' => true,
+                'targetClass' => '\app\models\user\User',
+                'message' => Yii::t('app', 'The phone number is taken by another user')
             ],
 
             [['is_landing'], 'safe'],
@@ -74,11 +80,11 @@ class SignupForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('app','Логин'),
-            'fullname' => Yii::t('app','Имя'),
+            'fullname' => Yii::t('app','Name'),
             'email' => Yii::t('app','Email'),
-            'password' => Yii::t('app','Пароль'),
-            'password2' => Yii::t('app','Повторный пароль'),
+            'phone' => Yii::t('app','Phone'),
+            'password' => Yii::t('app','Password'),
+            'password2' => Yii::t('app','Repeat password'),
         ];
     }
 
@@ -90,28 +96,26 @@ class SignupForm extends Model
     public function signup($profileData = [])
     {
         if ($this->validate()) {
-            //$shouldBeActivated = $this->shouldBeActivated();
             $user = new User();
-            $user->username = $this->username;
+            $user->username = $this->email;
             $user->email = $this->email;
+            $user->phone = $user->preparePhone($this->phone);
             $user->status = 1;
             $user->setPassword($this->password);
-            //$user->beforeSignup();
+            try {
+                $user->createSmsCode();
+            } catch (RestException $e) {
+                if ($e->getStatusCode() == 21211) {
+                    $this->addError('phone', Yii::t('phone', 'Incorrect phone number'));
+                } else {
+                    $this->addError('phone', Yii::t('phone', 'Something went wrong. Try later.'));
+                }
+                return null;
+            }
             if (!$user->save()) {
                 throw new Exception("User couldn't be  saved");
             };
             $user->afterSignup($profileData);
-            /*if ($shouldBeActivated) {
-                $token = UserToken::create($user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_A_DAY);
-                Yii::$app->commandBus->handle(new SendEmailCommand([
-                    'subject' => 'Account activation',
-                    'view' => 'activation',
-                    'to' => $this->email,
-                    'params' => [
-                        'url' => Url::to(['/user/sign-in/activation', 'token' => $token->token])
-                    ]
-                ]));
-            }*/
 
             return $user;
         }

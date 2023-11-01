@@ -10,7 +10,7 @@ if (!class_exists('ConfigGenerator')) {
                 'id' => env('PROJECT_NAME'),
                 'name' => env('PROJECT_NAME'),
                 'timeZone' => 'Europe/Moscow',
-                'language' => 'ru-RU',
+                'language' => 'en-US',
                 'basePath' => dirname(__DIR__),
                 'bootstrap' => ['log'],
                 'aliases' => [

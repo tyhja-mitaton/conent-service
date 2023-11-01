@@ -34,6 +34,9 @@ class AlbumController extends \yii\web\Controller
     public function actionVideos($id)
     {
         $model = $this->findModel($id);
+        if($model->for_registered_users && Yii::$app->user->isGuest) {
+            $this->redirect(['/site/login']);
+        }
         $dataProvider = new ArrayDataProvider();
         $params['page'] = $dataProvider->pagination->page + 1;
         $params['per_page'] = $dataProvider->pagination->pageSize;

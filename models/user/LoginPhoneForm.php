@@ -13,7 +13,7 @@ class LoginPhoneForm extends \yii\base\Model
     /**
      * @var
      */
-    public $phone;
+    public $email;
 
     public $rememberMe = true;
 
@@ -25,24 +25,16 @@ class LoginPhoneForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['confirm_code'], 'required'],
+            [['confirm_code', 'email'], 'required'],
             [['confirm_code'], 'string', 'length' => 4],
-            [['phone'], 'filter', 'filter' => 'trim'],
-            ['phone', 'required'],
-            [
-                'phone',
-                'match',
-                'pattern' => '#^[+]?[1-9][0-9-]{6,30}$#',
-                'message' => Yii::t('app', 'Incorrect phone number')
-            ],
-            ['phone', 'filter', 'filter' => [User::class, 'preparePhone']],
+            ['email', 'email'],
         ];
     }
 
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findOne(['phone' => $this->phone, 'confirm_code' => $this->confirm_code]);
+            $this->_user = User::findOne(['email' => $this->email, 'confirm_code' => $this->confirm_code]);
         }
 
         return $this->_user;
@@ -51,6 +43,7 @@ class LoginPhoneForm extends \yii\base\Model
     public function login()
     {
         if ($this->validate() && $user = $this->getUser()) {
+            if(empty($user->confirm_code)) {return false;}
             return Yii::$app->user->login($user, $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;

@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var \app\models\user\SignupForm $model */
 $this->title = Yii::t('app', 'Регистрация');
 ?>
+<div class="row p-5"><div class="col-12">
 <div class="container-login100">
     <div class="wrap-login100 p-0">
         <div class="wrap-login100 p-0">
@@ -18,8 +19,8 @@ $this->title = Yii::t('app', 'Регистрация');
                     'options' => ['class' => 'login100-form validate-form', 'autocomplete' => 'off'],
                     'enableClientValidation' => false
                 ]); ?>
-                <div class="input-group mb-3">
-                    <?php echo $form->field($model, 'username', [
+                <div class="input-group mb-3 mt-5">
+                    <?php echo $form->field($model, 'phone', [
                         'options' => [
                             'class' => 'input-group',
                         ],
@@ -31,7 +32,7 @@ $this->title = Yii::t('app', 'Регистрация');
                                     <i class="zmdi zmdi-account" aria-hidden="true"></i>
                                 </span>
                             </div>',
-                    ])->textInput(['autofocus' => true, 'class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('username')]) ?>
+                    ])->textInput(['autofocus' => true, 'class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('phone')]) ?>
                 </div>
                 <div class="input-group mb-3">
                     <?php echo $form->field($model, 'email', [
@@ -47,21 +48,6 @@ $this->title = Yii::t('app', 'Регистрация');
                                 </span>
                             </div> ',
                     ])->textInput(['class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('email'), 'type' => 'email']) ?>
-                </div>
-                <div class="input-group mb-3">
-                    <?php echo $form->field($model, 'username', [
-                        'options' => [
-                            'class' => 'input-group',
-                        ],
-                        'template' => '
-                            <div class="wrap-input100 validate-input">
-                                {input}
-                                <span class="focus-input100"></span>
-                                <span class="symbol-input100">
-                                    <i class="zmdi zmdi-email" aria-hidden="true"></i>
-                                </span>
-                            </div> ',
-                    ])->textInput(['class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('username')])?>
                 </div>
                 <div class="input-group mb-4">
                     <?php echo $form->field($model, 'password', [
@@ -102,8 +88,9 @@ $this->title = Yii::t('app', 'Регистрация');
                         <a href="<?= \yii\helpers\Url::to(['login']) ?>" class="btn btn-link box-shadow-0 px-0"><?=Yii::t('app','Уже есть аккаунт?')?></a>
                     </div>
                 </div>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
 </div>
-<?php ActiveForm::end(); ?>
+</div></div>

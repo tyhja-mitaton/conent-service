@@ -4,9 +4,10 @@ use yii\widgets\ActiveForm;
 
 /* @var yii\web\View $this */
 /* @var \yii\bootstrap5\ActiveForm $form */
-/* @var \app\models\user\SignupPhoneForm $model */
+/* @var \app\models\user\LoginPhoneForm $model */
 $this->title = Yii::t('app', 'Sign In');
 ?>
+    <div class="row p-5"><div class="col-12">
     <div class="container-login100">
         <div class="wrap-login100 p-0">
             <div class="wrap-login100 p-0">
@@ -17,8 +18,8 @@ $this->title = Yii::t('app', 'Sign In');
                         'options' => ['class' => 'login100-form validate-form', 'autocomplete' => 'off'],
                         'enableClientValidation' => false
                     ]); ?>
-                    <div class="input-group mb-3 mt-5">
-                        <?php echo $form->field($model, 'phone', [
+                    <div class="input-group mb-3">
+                        <?php echo $form->field($model, 'email', [
                             'options' => [
                                 'class' => 'input-group',
                             ],
@@ -27,10 +28,10 @@ $this->title = Yii::t('app', 'Sign In');
                                 {input}
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
-                                    <i class="zmdi zmdi-account" aria-hidden="true"></i>
+                                    <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                 </span>
-                            </div>',
-                        ])->textInput(['autofocus' => true, 'class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('phone')]) ?>
+                            </div> ',
+                        ])->textInput(['class' => 'form-control input100', 'placeholder' => $model->getAttributeLabel('email'), 'type' => 'email']) ?>
                     </div>
                     <div class="input-group mb-3">
                         <?php echo $form->field($model, 'confirm_code', [
@@ -53,8 +54,9 @@ $this->title = Yii::t('app', 'Sign In');
                             <button type="submit" class="btn btn-primary btn-block"><?=Yii::t('app','Login')?></button>
                         </div>
                     </div>
+                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
         </div>
     </div>
-<?php ActiveForm::end(); ?>
+   </div></div>
