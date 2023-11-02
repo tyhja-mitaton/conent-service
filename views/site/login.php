@@ -11,16 +11,12 @@ use yii\bootstrap5\Html;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-
+<div class="container">
+    <article class="page type-page status-publish hentry">
+        <div class="entry-content">
+            <p><strong></strong></p>
             <?php $form = ActiveForm::begin([
-                'id' => 'login-form',
+                'id' => 'pms_login',
                 'fieldConfig' => [
                     'template' => "{label}\n{input}\n{error}",
                     'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
@@ -28,27 +24,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
                 ],
             ]); ?>
+            <h4><?= Html::encode($this->title) ?></h4>
+            <strong>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox([
-                'template' => "<div class=\"custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            ]) ?>
+                <?= $form->field($model, 'rememberMe')->checkbox([
+                    'id' => 'rememberme'
+                ]) ?>
 
-            <div class="form-group">
-                <div>
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <div class="form-group">
+                    <div>
+                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    </div>
                 </div>
-            </div>
-
+                <p class="login-extra">
+                    Don't have account yet? <?= Html::a('Sign up', ['signup']) ?>
+                </p>
+            </strong>
             <?php ActiveForm::end(); ?>
-
-            <div style="color:#999;">
-                Don't have account yet? Sign up with <?=Html::a('email', ['signup'])?> or <?=Html::a('phone', ['signup-phone'])?>
-            </div>
-
         </div>
-    </div>
+    </article>
 </div>

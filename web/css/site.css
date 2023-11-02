@@ -130,3 +130,13 @@ body {
 .gen-breadcrumb::before {
     display:none;
 }
+@media(min-width:1080px) {
+    #pms_login {
+        margin-left: 33%;
+        margin-right: 33%;
+    }
+    #pms_register-form {
+        margin-left: 22%;
+        margin-right: 22%;
+    }
+}
