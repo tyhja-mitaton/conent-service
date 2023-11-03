@@ -36,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'password_hash',
             'oauth_client',
             'oauth_client_user_id',
-            'email:email',
             'status',
             'created_at',
             'updated_at',
@@ -44,7 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'is_deleted',
             'phone',
             'confirm_code',
-            'registration_type',
         ],
     ]) ?>
 

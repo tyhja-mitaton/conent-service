@@ -33,7 +33,6 @@ use app\models\user\enums\UserRole;
  * @property string $role
  * @property integer $phone
  * @property string $confirm_code
- * @property integer $registration_type
  *
  */
 
@@ -90,7 +89,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email', 'phone'], 'unique'],
+            [['username', 'phone'], 'unique'],
             ['status', 'default', 'value' => 1],
             //['status', 'in', 'range' => array_keys(UserStatus::array())],
             [['username'], 'filter', 'filter' => '\yii\helpers\Html::encode'],
@@ -103,8 +102,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
-            'username' => 'Login',
-            'email' => 'E-mail',
+            'username' => 'Username',
             'status' => 'Status',
             'access_token' => 'API token',
             'created_at' => 'Registration date',

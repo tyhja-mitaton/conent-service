@@ -24,7 +24,7 @@ $this->title = Yii::t('app', 'Register');
                     <?php echo $form->field($model, 'phone')->textInput(['autofocus' => true]) ?>
                 </li>
                 <li class="pms-field">
-                    <?php echo $form->field($model, 'email')->textInput(['type' => 'email']) ?>
+                    <?php echo $form->field($model, 'username')->textInput() ?>
                 </li>
                 <li class="pms-field">
                     <?php echo $form->field($model, 'password')->passwordInput() ?>

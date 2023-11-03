@@ -23,7 +23,7 @@ class SignupForm extends Model
     /**
      * @var
      */
-    public $email;
+    public $username;
     /**
      * @var
      */
@@ -42,14 +42,14 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['phone', 'email'], 'filter', 'filter' => 'trim'],
-            [['phone', 'email'], 'required'],
-            ['email', 'email'],
+            [['phone', 'username'], 'filter', 'filter' => 'trim'],
+            [['phone', 'username'], 'required'],
+            ['username', 'string'],
             [
-                'email',
+                'username',
                 'unique',
                 'targetClass' => '\app\models\user\User',
-                'message' => 'Электронная почта уже занята'
+                'message' => 'Username is already taken'
             ],
             [
                 'phone',
@@ -81,7 +81,7 @@ class SignupForm extends Model
     {
         return [
             'fullname' => Yii::t('app','Name'),
-            'email' => Yii::t('app','Email'),
+            'username' => Yii::t('app','Username'),
             'phone' => Yii::t('app','Phone'),
             'password' => Yii::t('app','Password'),
             'password2' => Yii::t('app','Repeat password'),
@@ -97,8 +97,7 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
-            $user->username = $this->email;
-            $user->email = $this->email;
+            $user->username = $this->username;
             $user->phone = $user->preparePhone($this->phone);
             $user->status = 1;
             $user->setPassword($this->password);

@@ -18,11 +18,6 @@ trait Finders
         return new UserQuery(get_called_class());
     }
 
-    public static function getModerationAmount()
-    {
-        return self::find()->filterWhere(['status_moderation' => UserStatusModeration::Moderation->value])->count();
-    }
-
     public static function getList()
     {
         $users = self::find()->all();
@@ -57,7 +52,7 @@ trait Finders
         if ($clientsOnly) {
             $clients = [];
             foreach ($usernameMap as $id => $username) {
-                if (Yii::$app->authManager->checkAccess($id, UserRole::Manager->value)) {
+                if (Yii::$app->authManager->checkAccess($id, UserRole::General->value)) {
                     $clients[$id] = $username;
                 }
             }

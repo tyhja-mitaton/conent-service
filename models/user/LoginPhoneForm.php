@@ -13,7 +13,7 @@ class LoginPhoneForm extends \yii\base\Model
     /**
      * @var
      */
-    public $email;
+    public $username;
 
     public $rememberMe = true;
 
@@ -25,16 +25,16 @@ class LoginPhoneForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['confirm_code', 'email'], 'required'],
+            [['confirm_code', 'username'], 'required'],
             [['confirm_code'], 'string', 'length' => 4],
-            ['email', 'email'],
+            ['username', 'string'],
         ];
     }
 
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findOne(['email' => $this->email, 'confirm_code' => $this->confirm_code]);
+            $this->_user = User::findOne(['username' => $this->username, 'confirm_code' => $this->confirm_code]);
         }
 
         return $this->_user;

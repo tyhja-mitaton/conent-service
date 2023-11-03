@@ -17,8 +17,8 @@ class User extends UserModel
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at', 'logged_at', 'is_deleted', 'phone', 'registration_type'], 'integer'],
-            [['username', 'auth_key', 'access_token', 'password_hash', 'oauth_client', 'oauth_client_user_id', 'email', 'confirm_code'], 'safe'],
+            [['id', 'status', 'created_at', 'updated_at', 'logged_at', 'is_deleted', 'phone'], 'integer'],
+            [['username', 'auth_key', 'access_token', 'password_hash', 'oauth_client', 'oauth_client_user_id', 'confirm_code'], 'safe'],
         ];
     }
 
@@ -65,7 +65,6 @@ class User extends UserModel
             'logged_at' => $this->logged_at,
             'is_deleted' => $this->is_deleted,
             'phone' => $this->phone,
-            'registration_type' => $this->registration_type,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
@@ -74,7 +73,6 @@ class User extends UserModel
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'oauth_client', $this->oauth_client])
             ->andFilterWhere(['like', 'oauth_client_user_id', $this->oauth_client_user_id])
-            ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'confirm_code', $this->confirm_code]);
 
         return $dataProvider;
