@@ -1,9 +1,156 @@
-version: '2'
+version: '3.2'
+
 services:
-  php:
-    image: yiisoftware/yii2-php:7.4-apache
+
+  common_php:
+    container_name: ${PROJECT_NAME}_common_php
+    build:
+      context: .
+      dockerfile: docker/php_common/Dockerfile
+    env_file:
+      - .env
+    environment:
+      - TZ=${PARAMS_TIMEZONE}
+      - DB_MYSQL_HOST=db_mysql
+      - DB_MYSQL_NAME=${DB_MYSQL_NAME}
+      - DB_MYSQL_USER=${DB_MYSQL_USER}
+      - DB_MYSQL_PASSWORD=${DB_MYSQL_PASSWORD}
+      - DB_MEMCACHED_HOST=db_memcached
+      - PHP_USER_ID=33
+      - DB_REDIS_HOST=db_redis
+      - DB_CLICKHOUSE_HOST_READ=db_clickhouse
+      - DB_CLICKHOUSE_HOST_WRITE=db_clickhouse_bulk
+      - DB_CLICKHOUSE_PORT_READ=${DB_CLICKHOUSE_PORT_READ}
+      - DB_CLICKHOUSE_PORT_WRITE=${DB_CLICKHOUSE_PORT_WRITE}
+      - DB_CLICKHOUSE_NAME=${DB_CLICKHOUSE_NAME}
+      - DB_CLICKHOUSE_USER=${DB_CLICKHOUSE_USER}
+      - DB_CLICKHOUSE_PASSWORD=${DB_CLICKHOUSE_PASSWORD}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_PURCHASED_PHONE_NUMBER=${TWILIO_PURCHASED_PHONE_NUMBER}
     volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+      - .:/home/www
+    depends_on:
+      - "db_mysql"
+      - "db_clickhouse"
+    links:
+      - db_mysql
+      - db_clickhouse
+
+  core_php:
+    container_name: ${PROJECT_NAME}_core_php
+    build:
+      context: .
+      dockerfile: docker/php_core/Dockerfile
+    env_file:
+      - .env
+    environment:
+      - TZ=${PARAMS_TIMEZONE}
+      - DB_MYSQL_HOST=db_mysql
+      - DB_MYSQL_NAME=${DB_MYSQL_NAME}
+      - DB_MYSQL_USER=${DB_MYSQL_USER}
+      - DB_MYSQL_PASSWORD=${DB_MYSQL_PASSWORD}
+      - DB_MEMCACHED_HOST=db_memcached
+      - PHP_USER_ID=33
+      - DB_REDIS_HOST=db_redis
+      - DB_CLICKHOUSE_HOST_READ=db_clickhouse
+      - DB_CLICKHOUSE_HOST_WRITE=db_clickhouse_bulk
+      - DB_CLICKHOUSE_PORT_READ=${DB_CLICKHOUSE_PORT_READ}
+      - DB_CLICKHOUSE_PORT_WRITE=${DB_CLICKHOUSE_PORT_WRITE}
+      - DB_CLICKHOUSE_NAME=${DB_CLICKHOUSE_NAME}
+      - DB_CLICKHOUSE_USER=${DB_CLICKHOUSE_USER}
+      - DB_CLICKHOUSE_PASSWORD=${DB_CLICKHOUSE_PASSWORD}
+    depends_on:
+      - "common_php"
+    volumes:
+      - .:/home/www
+    links:
+      - db_mysql
+      - db_clickhouse
+
+  web_nginx:
+    container_name: ${PROJECT_NAME}_web_nginx
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
     ports:
-      - '8000:80'
+      - "80:80"
+    environment:
+      - TZ=${PARAMS_TIMEZONE}
+      - NGINX_HOST_CORE=${NGINX_HOST_CORE}
+      - NGINX_HOST_STATIC=${NGINX_HOST_STATIC}
+    depends_on:
+      - "core_php"
+    volumes:
+      - .:/home/www
+      - ./docker/nginx/templates:/etc/nginx/templates
+
+  db_mysql:
+    container_name: ${PROJECT_NAME}_db_mysql
+    restart: unless-stopped
+    image: mysql:latest
+    tty: true
+    ports:
+      - "3306:3306"
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_MYSQL_NAME}
+      - MYSQL_USER=${DB_MYSQL_USER}
+      - MYSQL_PASSWORD=${DB_MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_MYSQL_PASSWORD}
+    command: "mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+
+  db_clickhouse:
+    container_name: ${PROJECT_NAME}_db_clickhouse
+    image: yandex/clickhouse-server
+    environment:
+      - CLICKHOUSE_DB=${DB_CLICKHOUSE_NAME}
+      - CLICKHOUSE_USER=${DB_CLICKHOUSE_USER}
+      - CLICKHOUSE_PASSWORD=${DB_CLICKHOUSE_PASSWORD}
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./docker/clickhouse/image-files/etc/clickhouse-server:/etc/clickhouse-server
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  db_clickhouse_bulk:
+    container_name: ${PROJECT_NAME}_db_clickhouse_bulk
+    image: nikepan/clickhouse-bulk
+    environment:
+      - CLICKHOUSE_SERVERS=http://db_clickhouse:8123
+
+  db_clickhouse_client:
+    container_name: ${PROJECT_NAME}_db_clickhouse_client
+    image: yandex/clickhouse-client
+    entrypoint:
+      - /bin/sleep
+    command:
+      - infinity
+
+  db_memcached:
+    container_name: ${PROJECT_NAME}_db_memcached
+    image: memcached:latest
+
+  db_redis:
+    container_name: ${PROJECT_NAME}_db_redis
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+
+volumes:
+  mysql-data:
+    external:
+      name: ${PROJECT_NAME}_mysql
+  clickhouse-data:
+    external:
+      name: ${PROJECT_NAME}_clickhouse
+  redis-data:
+    external:
+      name: ${PROJECT_NAME}_redis
+  logvolume01: { }
