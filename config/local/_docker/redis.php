@@ -1,7 +1,7 @@
 <?php
 return [
-    'class' => \yii\redis\Connection::class,
-    'hostname' => '127.0.0.1',
+    'class' => 'yii\redis\Connection',
+    'hostname' => '${DB_REDIS_HOST}',
     'port' => 6379,
     'database' => 0,
 ];
