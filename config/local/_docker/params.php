@@ -1,11 +1,5 @@
 <?php
-
 return [
-    'adminEmail' => 'admin@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
-    'clientId' => '',
-    'clientSecret' => '',
-    'token' => '',
-    'isPhoneCodesDisabled' => true,
+    'urlSchema' => '${PARAMS_URL_SCHEMA}',
 ];
+

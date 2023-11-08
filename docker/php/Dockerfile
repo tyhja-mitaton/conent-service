@@ -44,6 +44,7 @@ RUN apt-get update && \
                             opcache \
                             pdo_mysql && \
     printf "\n" | pecl install \
+        http \
         mcrypt \
         memcached \
         redis && \
@@ -51,20 +52,20 @@ RUN apt-get update && \
         memcached \
         redis
 
+RUN apt-get install -y libc-client-dev libkrb5-dev && rm -r /var/lib/apt/lists/*
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-install imap
+
 # Install composer
+# ApiDoc generator
 RUN curl -sS https://getcomposer.org/installer | php -- \
         --filename=composer.phar \
         --install-dir=/usr/local/bin
 
-# Install ext-http
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions http
-
 WORKDIR /home/www
 
 # Add configuration files
-COPY docker/php_common/image-files/ /usr/local/bin/
+COPY docker/php/image-files/ /
 
 # Add GITHUB_API_TOKEN support for composer
 RUN chmod 700 \
@@ -75,4 +76,3 @@ RUN chmod 700 \
 # Startup script for FPM
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["docker-run.sh"]
-
