@@ -46,7 +46,7 @@ trait Auth
     }
 
     /**
-     * Finds user by username or email
+     * Finds user by username
      *
      * @param string $login
      * @return static|null
@@ -55,7 +55,7 @@ trait Auth
     {
         return static::find()
             ->active()
-            ->andWhere(['or', ['username' => $login], ['email' => $login]])
+            ->andWhere(['username' => $login])
             ->limit(1)
             ->one();
     }
