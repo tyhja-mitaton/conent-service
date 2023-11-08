@@ -140,3 +140,6 @@ body {
         margin-right: 22%;
     }
 }
+.table-striped tbody tr td {
+    color:white!important;
+}

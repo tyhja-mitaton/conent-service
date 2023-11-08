@@ -31,9 +31,6 @@ class Album extends \app\models\album\Album
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            /*'pagination' => [
-                'pageSize' => 4,
-            ],*/
         ]);
 
         $this->load($params);

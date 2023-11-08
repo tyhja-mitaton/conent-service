@@ -86,6 +86,9 @@ class Album extends \yii\db\ActiveRecord
             $this->author_name = $body['user']['name'];
             $this->author_url = $body['user']['link'];
             $this->cover_link = $body['pictures']['base_link'];
+        } else {
+            $this->addError('link', $response['body']['error']);
+            return false;
         }
 
         return parent::beforeSave($insert);

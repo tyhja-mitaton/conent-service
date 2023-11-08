@@ -9,12 +9,7 @@ use app\models\user\enums\UserRole;
 $this->title = 'My Yii Application';
 ?>
 
-<div class="container">
-    <?php if(!Yii::$app->user->isGuest && Yii::$app->user->can(UserRole::Administrator->value)){?>
-    <div class="gen-btn-container mt-5 mb-5">
-        <?= Html::a(Yii::t('app', 'Create album'), ['album/create'], ['class' => 'gen-button']) ?>
-    </div>
-    <?php }?>
+<div class="container mt-5">
     <?= \yii\widgets\ListView::widget([
         'dataProvider' => $dataProvider,
         'showOnEmpty' => true,
